@@ -3,7 +3,9 @@
     "slug": "hello-notebook",
     "title": "Hello, notebook",
     "date": "2026-09-20",
-    "tags": ["initial"],
+    "tags": [
+      "initial"
+    ],
     "summary": "What this place is and what I'll be writing about."
   }
 ]
