@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 110" width="520" height="110" font-family="sans-serif" font-size="15">
+<rect width="520" height="110" fill="#fff"/>
+<g fill="#eef3ff" stroke="#2b4fa3" stroke-width="2"><rect x="15" y="30" width="120" height="50" rx="6"/><rect x="200" y="30" width="120" height="50" rx="6"/><rect x="385" y="30" width="120" height="50" rx="6"/></g>
+<g fill="#23262b" text-anchor="middle"><text x="75" y="60">Client</text><text x="260" y="60">Log (fsync)</text><text x="445" y="60">Table</text></g>
+<g stroke="#2b4fa3" stroke-width="2" fill="none"><path d="M135 55h55"/><path d="M320 55h55"/><path d="M182 48l8 7-8 7"/><path d="M367 48l8 7-8 7"/></g>
+</svg>

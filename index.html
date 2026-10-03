@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notebook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{--paper:#fbfbf7;--line:#d9e8e4;--major:#b4d2cb;--rule:#cfe0ee;--margin:#e58b8b;--ink:#23262b;--soft:#6a7078;--pen:#2b4fa3;--hole:#e4e2da;--code:#eef0f3;--lh:32px;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1d2127;--line:#262e36;--major:#38444f;--rule:#2b3440;--margin:#8a4a4f;--ink:#e4e6ea;--soft:#98a0ab;--pen:#8fb0ff;--hole:#12151a;--code:#272d36}}
+:root[data-theme="dark"]{--paper:#1d2127;--line:#262e36;--major:#38444f;--rule:#2b3440;--margin:#8a4a4f;--ink:#e4e6ea;--soft:#98a0ab;--pen:#8fb0ff;--hole:#12151a;--code:#272d36}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/var(--lh) Lora,Georgia,serif;min-height:100vh;
+  /* ruled paper (default) */
+  background-image:linear-gradient(to bottom,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px));background-size:100% var(--lh);background-position:0 20px}
+/* graph paper: set paper:"graph" in SITE */
+body[data-paper="graph"]{background-image:linear-gradient(var(--major) 1px,transparent 1px),linear-gradient(90deg,var(--major) 1px,transparent 1px),linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:160px 160px,160px 160px,32px 32px,32px 32px;background-position:0 19px}
+body[data-paper="graph"] .margin{display:none}
+.margin{position:fixed;top:0;bottom:0;left:72px;width:2px;background:var(--margin);opacity:.7}
+.holes{position:fixed;top:0;bottom:0;left:18px;width:24px;background:radial-gradient(circle at 12px 12px,var(--hole) 0 9px,transparent 10px) 0 0/24px 160px repeat-y}
+main{max-width:720px;padding:64px 24px 96px 104px;margin-left:max(0px,calc(50% - 360px))}
+@media(max-width:640px){.margin{left:36px}.holes{display:none}main{padding:40px 16px 72px 52px;margin-left:0}}
+h1,h2,h3{font-family:Caveat,"Bradley Hand","Segoe Script",cursive;font-weight:700;color:var(--pen)}
+h1{font-size:54px;line-height:64px;margin:0 0 var(--lh)}
+.intro{margin:0 0 64px}.intro .at{color:var(--pen);font-weight:600}
+h2{font-size:34px;line-height:var(--lh);margin:0 0 var(--lh)}
+a{color:inherit}
+ul.posts{list-style:none;margin:0;padding:0}ul.posts li{margin:0 0 var(--lh)}ul.posts a{display:block;text-decoration:none}
+.t{font:700 28px/var(--lh) Caveat,cursive;color:var(--pen)}
+ul.posts a:hover .t,ul.posts a:focus-visible .t{text-decoration:underline wavy;text-underline-offset:5px}
+.m{font-size:15px;color:var(--soft)}
+.back{font:700 24px/var(--lh) Caveat,cursive;color:var(--pen);text-decoration:none;display:inline-block;margin-bottom:var(--lh)}
+.back:hover{text-decoration:underline}
+article h1{font-size:46px;line-height:var(--lh);margin:0 0 var(--lh)}
+article .m{margin:0 0 var(--lh)}
+article p,article ul,article ol,article pre,article blockquote,article figure{margin:0 0 var(--lh)}
+article h3{font-size:30px;line-height:var(--lh);margin:var(--lh) 0}
+article ul,article ol{padding-left:28px}
+article pre{background:var(--code);border-radius:4px;padding:15px 16px;overflow-x:auto;font:14px/24px ui-monospace,Menlo,Consolas,monospace}
+article code{font:15px ui-monospace,Menlo,Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:3px}
+article pre code{background:none;padding:0;font-size:14px}
+article blockquote{padding-left:16px;border-left:3px solid var(--pen);font-style:italic;color:var(--soft)}
+article figure{background:var(--paper);padding:12px 12px 4px;border:1px solid var(--major);box-shadow:0 2px 6px rgba(0,0,0,.12);transform:rotate(-.4deg)}
+article figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+article figcaption{font:700 22px/var(--lh) Caveat,cursive;color:var(--soft);text-align:center;padding:8px 0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--pen);outline-offset:3px}
+footer{margin-top:64px;font-size:14px;color:var(--soft)}
+#theme{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:14px;background:var(--paper);border:1px dashed var(--soft);color:var(--soft);font:700 18px Caveat,cursive;padding:2px 10px;border-radius:12px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="margin"></div><div class="holes"></div>
+<button id="theme" type="button">light / dark</button>
+<main id="app">Loading…</main>
+<script>
+/* ===== EDIT THIS ===== */
+const SITE = { name:"Your Name", role:"software engineer", company:"Company Name", paper:"graph" /* "graph" or "ruled" */ };
+/* ===================== */
+document.body.dataset.paper = SITE.paper;
+const app = document.getElementById("app");
+let POSTS = [];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fmt = d => new Date(d+"T12:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+const safe = u => /^\s*javascript:/i.test(u) ? "#" : u.replace(/"/g,"%22");
+
+function inline(s){
+  return esc(s)
+    .replace(/`([^`]+)`/g,"<code>$1</code>")
+    .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,(_,a,u)=>`<img src="${safe(u)}" alt="${a}">`)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(_,t,u)=>`<a href="${safe(u)}" rel="noopener">${t}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g,"<em>$1</em>");
+}
+function md(src){
+  return src.split(/```[^\n]*\n?/).map((chunk,i)=>{
+    if(i%2) return "<pre><code>"+esc(chunk.replace(/\n$/,""))+"</code></pre>";
+    return chunk.split(/\n{2,}/).map(b=>{
+      b=b.trim(); if(!b) return ""; let m;
+      if(/^#{2,3} /.test(b)) return "<h3>"+inline(b.replace(/^#+ /,""))+"</h3>";
+      if(b.startsWith("> ")) return "<blockquote>"+inline(b.replace(/^> ?/gm,""))+"</blockquote>";
+      if(/^[-*] /.test(b)) return "<ul>"+b.split("\n").map(l=>"<li>"+inline(l.replace(/^[-*] /,""))+"</li>").join("")+"</ul>";
+      if(/^\d+\. /.test(b)) return "<ol>"+b.split("\n").map(l=>"<li>"+inline(l.replace(/^\d+\. /,""))+"</li>").join("")+"</ol>";
+      if(m=b.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/)) return `<figure><img src="${safe(m[2])}" alt="${esc(m[1])}" loading="lazy">${m[1]?`<figcaption>${inline(m[1])}</figcaption>`:""}</figure>`;
+      return "<p>"+inline(b).replace(/\n/g," ")+"</p>";
+    }).join("");
+  }).join("");
+}
+const tagStr = p => (p.tags||[]).map(esc).join(", ");
+
+function home(){
+  document.title = SITE.name+"'s Notebook";
+  app.innerHTML = `<h1>Hey, I'm ${esc(SITE.name)}.</h1>
+    <p class="intro">I work as a ${esc(SITE.role)} at <span class="at">${esc(SITE.company)}</span>, and this is my blog where I discuss topics related to systems I find interesting.</p>
+    <h2>Notes</h2>
+    <ul class="posts">${POSTS.map(p=>`<li><a href="#/${p.slug}"><div class="t">${esc(p.title)}</div>
+      <div class="m">${fmt(p.date)}${p.tags&&p.tags.length?" &middot; "+tagStr(p):""}</div><div>${esc(p.summary||"")}</div></a></li>`).join("")}</ul>
+    <footer>&copy; ${new Date().getFullYear()} ${esc(SITE.name)}</footer>`;
+}
+async function post(p){
+  document.title = p.title+" | "+SITE.name;
+  app.innerHTML = `<a class="back" href="#/">&larr; back to notes</a><article><h1>${esc(p.title)}</h1>
+    <p class="m">${fmt(p.date)}${p.tags&&p.tags.length?" &middot; "+tagStr(p):""}</p><div id="body">Loading…</div></article>`;
+  try{
+    const r = await fetch("posts/"+p.slug+".md"); if(!r.ok) throw 0;
+    document.getElementById("body").innerHTML = md((await r.text()).replace(/^---[\s\S]*?\n---\s*/,""));
+  }catch(e){ document.getElementById("body").textContent = "Couldn't load this post."; }
+}
+function route(){
+  const slug = location.hash.replace(/^#\/?/,""), p = POSTS.find(x=>x.slug===slug);
+  p ? post(p) : home(); window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+(async()=>{
+  try{ const r = await fetch("posts/index.json"); if(!r.ok) throw 0; POSTS = await r.json(); route(); }
+  catch(e){ app.innerHTML = "<p>Couldn't load posts/index.json. Run <code>node build.js</code>, and view the site through a server (<code>npx serve</code>), not by double-clicking the file.</p>"; }
+})();
+document.getElementById("theme").addEventListener("click",()=>{
+  const r=document.documentElement, dark = r.dataset.theme ? r.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+});
+</script>
+</body>
+</html>
